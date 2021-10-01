@@ -1,0 +1,60 @@
+version: "3.9"
+networks:
+    mb-network:
+        driver: bridge
+volumes:
+    redis-data:
+        driver: local
+    neo4j-data:
+        driver: local
+services:
+    redis-database:
+        image: redis:5.0.12
+        container_name: 'redis-database'
+        command: redis-server --requirepass ${REDIS_PASS}
+        ports:
+            - '6379:6379'
+        networks:
+            - mb-network
+        volumes:
+            - 'redis-data:/data'
+        hostname: redis
+    neo4j-database:
+        image: neo4j:4.1.8
+        container_name: 'neo4j-database'
+        ports:
+            - '7474:7474'
+            - '7687:7687'
+        networks:
+            - mb-network
+        volumes:
+            - 'neo4j-data:/data'
+        environment: 
+            - NEO4J_AUTH=neo4j/${NEO4J_PASS}
+        hostname: neo4j
+    microblog-auth:
+        image: microblog-auth
+        container_name: 'microblog-auth'
+        hostname: microblog-auth
+        networks:
+            - mb-network
+        depends_on:
+            - redis-database
+            - neo4j-database
+    microblog-backend:
+        image: microblog-backend
+        container_name: 'microblog-backend'
+        hostname: microblog-backend
+        networks:
+            - mb-network
+        depends_on:
+            - redis-database
+            - neo4j-database
+    microblog-gateway:
+        image: microblog-gateway
+        container_name: 'microblog-gateway'
+        ports:
+            - '8080:8080'
+        networks:
+            - mb-network
+
