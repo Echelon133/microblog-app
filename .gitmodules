@@ -4,3 +4,6 @@
 [submodule "microblog-auth"]
 	path = microblog-auth
 	url = git@github.com:Echelon133/microblog-auth.git
+[submodule "microblog-backend"]
+	path = microblog-backend
+	url = git@github.com:Echelon133/microblog-backend.git
