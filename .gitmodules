@@ -1,0 +1,3 @@
+[submodule "microblog-gateway"]
+	path = microblog-gateway
+	url = git@github.com:Echelon133/microblog-gateway.git
