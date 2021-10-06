@@ -11,7 +11,7 @@ services:
     redis-database:
         image: redis:5.0.12
         container_name: 'redis-database'
-        command: redis-server --requirepass ${REDIS_PASS}
+        command: redis-server --requirepass ${REDIS_PASS} --save 120 1
         ports:
             - '6379:6379'
         networks:
