@@ -1,5 +1,21 @@
 # microblog-app
 
+Simple twitter-like micro-blogging platform.
+
+## Features
+* follow/unfollow other users
+* post posts (the equivalent of tweets)
+* post quotes (the equivalent of quote tweets)
+* post response posts (the equivalent of twitter replies)
+* like/unlike other users' posts
+* tag posts
+* mention other users in posts
+* retrieve most popular tags in the last hour/day/week
+* user's feed based on popularity/recency of posts
+* notifications (when being quoted, responded to, or mentioned in another post)
+* report posts
+* search for users
+
 ## Dev Config
 
 #### Cloning the repository 
